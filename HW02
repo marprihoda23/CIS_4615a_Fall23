@@ -31,18 +31,74 @@ public String sanitizeUser(String username){
  *Rule 02. Expressions (EXP)
  ******************************************************************************/
 //XP00-J. Do not ignore values returned by methods Given the non-compliant code
+public void deleteFile(){
+    File someFile = new File("someFileName.txt");
+    // Do something with someFile
+    someFile.delete();
+}
+
+//Correct the code as shown in theCompliant Solution below:
+public void deleteFile(){
+    File someFile = new File("someFileName.txt");
+    // Do something with someFile
+    if(!someFile.delete()){ 
+        //Handle failure to delete the file
+    }
+}
 
 /******************************************************************************
  *Rule 03. Numeric Types and Operations (NUM)
  ******************************************************************************/
 //NUM03-J. Use integer types that can fully represent the possible range of unsigned data Given the non-compliant code
+public static int getInteger(DataInputStream is)throws IOException{
+    return is.readInt();
+}
+
+//Correct the code as shown in theCompliant Solution below:
+public static long getInteger (DataInputStream is) throws IOException{
+    return is.readInt() & 0xFFFFFFFFL; // Mask with 32 one−bits
+}
 
 /******************************************************************************
  *Rule 04. Characters and Strings (STR)
  ******************************************************************************/
 //STR03-J. Do not encode noncharacter data as a string Given the non-compliant code
+BigInteger x = new BigInteger ("530500452766");
+byte[]byteArray = x.toByteArray();
+String s = new String(byteArray);
+byteArray = s.getBytes();
+x = new BigInteger(byteArray);
+
+//Correct the code as shown in the Compliant Solution below:
+BigInteger x = new BigInteger("530500452766");
+String s = x.toString(); //Valid character data
+byte[]byteArray = s.getBytes();
+String ns = new String(byteArray);
+x = new BigInteger(ns);
 
 /******************************************************************************
  *Rule 06. Methods (MET)
  ******************************************************************************/
 //MET01-J. Never use assertions to validate method arguments Given the non-compliant code
+public static int getAbsAdd(int x,int y){
+    assert x != Integer.MIN VALUE;
+    assert y != Integer.MIN VALUE;
+    int absX = Math.abs(x);
+    int absY = Math.abs(y);
+    assert (absX <= Integer.MAX VALUE − absY);
+    return absX + absY;
+}
+
+// Usage:getAbsAdd(Integer.MIN VALUE,1);
+//Correct the code as shown in theCompliant Solution below:
+public static int getAbsAdd(int x,int y){
+    if(x == Integer.MIN VALUE || y == Integer.MIN VALUE) {
+      throw new IllegalArgumentException();
+    }
+    int absX = Math.abs(x);
+    int absY = Math.abs(y);
+    if(absX>Integer.MAX VALUE − absY){
+      throw new IllegalArgumentException();
+    }
+    return absX + absY;
+}
