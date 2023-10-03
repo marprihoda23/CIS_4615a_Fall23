@@ -4,12 +4,14 @@
  *  Marielle Prihoda 
  *  HW 02 CIS4615
  *  Due Oct 8th
+ *
+ * 5 Mandatory Vulnerabilities
  ******************************************************************************/
 
 /******************************************************************************
  *Rule 00. Input Validation and Data Sanitization (IDS)
  ******************************************************************************/
-//IDS03-J. Do not log unsanitized user input Given the non-compliant code
+//(FileName:R00_IDS03_J.java) Do not log unsanitized user input Given the non-compliant code
 if(login Successful){
 logger.severe("User login succeeded for:" + username);
 }else{
@@ -30,7 +32,7 @@ public String sanitizeUser(String username){
 /******************************************************************************
  *Rule 02. Expressions (EXP)
  ******************************************************************************/
-//XP00-J. Do not ignore values returned by methods Given the non-compliant code
+//(FileName:R02_XP00_J.java) Do not ignore values returned by methods Given the non-compliant code
 public void deleteFile(){
     File someFile = new File("someFileName.txt");
     // Do something with someFile
@@ -49,7 +51,7 @@ public void deleteFile(){
 /******************************************************************************
  *Rule 03. Numeric Types and Operations (NUM)
  ******************************************************************************/
-//NUM03-J. Use integer types that can fully represent the possible range of unsigned data Given the non-compliant code
+//(fileName:R03_NUM03_J.java) Use integer types that can fully represent the possible range of unsigned data Given the non-compliant code
 public static int getInteger(DataInputStream is)throws IOException{
     return is.readInt();
 }
@@ -62,7 +64,7 @@ public static long getInteger (DataInputStream is) throws IOException{
 /******************************************************************************
  *Rule 04. Characters and Strings (STR)
  ******************************************************************************/
-//STR03-J. Do not encode noncharacter data as a string Given the non-compliant code
+//(FileName:R04_STR03_J.java) Do not encode noncharacter data as a string Given the non-compliant code
 BigInteger x = new BigInteger ("530500452766");
 byte[]byteArray = x.toByteArray();
 String s = new String(byteArray);
@@ -79,7 +81,7 @@ x = new BigInteger(ns);
 /******************************************************************************
  *Rule 06. Methods (MET)
  ******************************************************************************/
-//MET01-J. Never use assertions to validate method arguments Given the non-compliant code
+//(FileName:R06_MET01_J.java) Never use assertions to validate method arguments Given the non-compliant code
 public static int getAbsAdd(int x,int y){
     assert x != Integer.MIN VALUE;
     assert y != Integer.MIN VALUE;
