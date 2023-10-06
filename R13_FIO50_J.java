@@ -3,12 +3,10 @@
  *FIO50-J. Do not make assumptions about file creation
  ******************************************************************************/
 public void createFile(String filename)
-    throws IOException{
-  OutputStream out = new FileOutputStream(filename, true);
-  if (!new File(filename).createNewFile()) {
-      // File cannot be created...handle error
-  } else {
-      out = new FileOutputStream(filename);
-      // Work with file
+    throws FileNotFoundException{
+  try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(Paths.get(filename),StandardOpenOption.CREATE_NEW))) {
+    // Work with out
+  } catch (IOException x) {
+      // File not writable...handle error
   }
 }
