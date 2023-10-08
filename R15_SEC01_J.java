@@ -1,6 +1,6 @@
 /******************************************************************************
- *Rule 13: Input Output (FIO)
- *FIO50-J. Do not make assumptions about file creation
+ *Rule 15: Platform Security (SEC)
+ *SEC01_1  Do not allow tainted variables in privileged blocks
  ******************************************************************************/
 private void privilegedMethod(final String filename)throws FileNotFoundException {
   final String cleanFilename;
